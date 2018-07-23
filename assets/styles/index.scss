@@ -1,2 +1,91 @@
 $icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
 @import '~bootstrap-sass/assets/stylesheets/bootstrap';
+
+#branding {
+  color: #04aafa;
+  font-family: 'Passion One', cursive;
+  text-align: center;
+}
+
+.btn-primary {
+  background-color: #090909;
+  color: #00aafa;
+  font-weight: bold;
+}
+
+.btn-secondary {
+  background-color: #666666;
+  color: #cccccc;
+}
+
+.carousel-indicators {
+  align-content: center;
+}
+
+.close {
+  color: #666666;
+}
+
+#directory {
+  padding: 2%;
+  clear: both;
+  margin: auto;
+  background-color: #13313d;
+}
+
+
+#filter-select {
+  color: #a7e2ff;
+  clear: both;
+  padding: 0.5%;
+  font-weight: bold;
+}
+
+.images {
+  margin: auto;
+  clear: both;
+}
+
+.item {
+  margin: auto;
+  align-self: center;
+}
+
+.modal-body {
+  background-color: #151515;
+}
+
+.modal-header {
+  background-color: #121212;
+}
+
+.modal-title {
+  color: #00aafa;
+  font-family: 'Passion One', cursive;
+  font-size: 180%;
+}
+
+#spirit-binder {
+  background-color: #000000;
+  background-size: cover;
+}
+
+.text-input {
+  background-color: #010101;
+  color: #7a7a7a;
+}
+
+.userActionModal {
+  color: #a7e2ff;
+  background-color: #13313d;
+  font-weight: bold;
+  border: none;
+  margin: .3%;
+  display: --webkit inline-block;
+  float: right;
+}
+
+#whiskeyCarousel {
+  margin: auto;
+  align-self: auto;
+}
