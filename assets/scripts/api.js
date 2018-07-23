@@ -1,17 +1,17 @@
 const config = require('./config')
 const store = require('./store')
 
-const register = function(data) {
+const signUp = function (data) {
   return $.ajax({
-    url: config.apiUrl + `sign-up`,
+    url: config.apiUrl + `/sign-up`,
     method: 'POST',
     data
   })
 }
 
-const signIn = function(data) {
+const signIn = function (data) {
   return $.ajax({
-    url: config.apiUrl + `sign-in`,
+    url: config.apiUrl + `/sign-in`,
     method: 'POST',
     data
   })
@@ -19,7 +19,7 @@ const signIn = function(data) {
 
 const changePassword = function(data) {
   return $.ajax({
-    url: config.apiUrl + 'change-password',
+    url: config.apiUrl + '/change-password',
     method: 'PATCH',
     headers: {
       Authorization: 'Token token=' + store.user.token
@@ -28,9 +28,9 @@ const changePassword = function(data) {
   })
 }
 
-const signOut = function() {
+const signOut = function () {
   return $.ajax({
-    url: config.apiUrl + 'sign-out',
+    url: config.apiUrl + '/sign-out',
     method: 'DELETE',
     headers: {
       Authorization: 'Token token=' + store.user.token
@@ -40,7 +40,7 @@ const signOut = function() {
 
 const getBottles = function () {
   return $.ajax({
-    url: config.apiUrl + `whiskeys/`,
+    url: config.apiUrl + `/whiskeys`,
     method: 'GET',
     headers: {
       Authorization: 'Token token=' + store.user.token
@@ -50,7 +50,7 @@ const getBottles = function () {
 
 const findBottle = function () {
   return $.ajax({
-    url: config.apiUrl + `whiskeys/` + store.whiskey.id,
+    url: config.apiUrl + `/whiskeys/` + store.whiskey.id,
     method: 'GET',
     headers: {
       Authorization: 'Token token=' + store.user.token
@@ -59,7 +59,7 @@ const findBottle = function () {
 }
 
 module.exports = {
-  register,
+  signUp,
   signIn,
   changePassword,
   signOut,

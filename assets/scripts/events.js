@@ -3,9 +3,9 @@ const getFormFields = require('../../lib/get-form-fields.js')
 const spiritUi = require('./ui')
 const store = require('./store')
 
-const onEngageRegisterModal = function (event) {
+const onEngageSignUpModal = function (event) {
   event.preventDefault()
-  $('#registerModal').modal('show')
+  $('#signUpModal').modal('show')
 }
 
 const onEngageSignInModal = function (event) {
@@ -17,19 +17,19 @@ const onEngagePasswordChangeModal = function () {
   event.preventDefault()
   $('#changePasswordModal').modal('show')
 }
-const onRegister = function (event) {
+const onSignUp = function (event) {
   event.preventDefault()
   const data = getFormFields(event.target)
-  spiritApi.register(data)
-    .then(spiritUi.onRegisterSuccess)
-    .catch(spiritUi.onRegisterFailure)
-  $('#registerModal').modal('hide')
+  spiritApi.signUp(data)
+    .then(spiritUi.onSignUpSuccess)
+    .catch(spiritUi.onSignUpFailure)
+  $('#signUpModal').modal('hide')
 }
 
 const onSignIn = function (event) {
   event.preventDefault()
   const data = getFormFields(event.target)
-  // console.log(data)
+  console.log(data)
   spiritApi.signIn(data)
     .then(spiritUi.onSignInSuccess)
     .catch(spiritUi.onSignInFailure)
@@ -68,10 +68,10 @@ const onFindBottle = function (event) {
 }
 
 module.exports = {
-  onEngageRegisterModal,
+  onEngageSignUpModal,
   onEngageSignInModal,
   onEngagePasswordChangeModal,
-  onRegister,
+  onSignUp,
   onSignIn,
   onSignOut,
   onChangePassword,

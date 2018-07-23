@@ -1,20 +1,22 @@
 const store = require('./store')
 const events = require('./events')
 
+const whiskeyImages = ['../../../redemption-bourbon.png', '../../../lagavulin16_400x400.progressive.jpg', '../../../hibiki-japanese-harmony.jpg']
+
 const clearFormFields = function (formId) {
   $(formId).each(function() {
     this.reset()
   })
 }
 
-const onRegisterSuccess = function () {
+const onSignUpSuccess = function () {
   $('#sign-up-form-section').hide()
   clearFormFields()
   $()
 }
 
-const onRegisterFailure = function (error) {
-  console.error('Error on Register:', error)
+const onSignUpFailure = function (error) {
+  console.error('Error on Sign Up:', error)
 }
 
 const onSignInSuccess = function (data) {
@@ -25,6 +27,7 @@ const onSignInSuccess = function (data) {
   clearFormFields('#sign-in-form')
   store.user = data.user
   $('#signInModul').modal('hide')
+  $('#filter-select').css('display', 'inline-block')
   clearFormFields()
 }
 
@@ -53,8 +56,22 @@ const onChangePasswordFailure = function (error) {
   console.error('Error on Change Password:', error)
 }
 
-const onGetBottlesSuccess = function () {
-  
+const onGetBottlesSuccess = function (data) {
+  console.log(data)
+  for (let i = 0; i < whiskeyImages.length; i++) {
+    $('<div class="item"><img src="' + whiskeyImages[i] + '" class="images"><div class="carousel-caption"></div></div>').appendTo('.carousel-inner')
+    $('<li data-target="#whiskeyCarousel" data-slide-to="' + i + '"></li>').appendTo('.carousel-indicators')
+  }
+  $('.item').first().addClass('active')
+  $('.carousel-indicators > li').first().addClass('active')
+  $('#whiskeyCarousel').css('display', 'block')
+  $('#whiskeyCarousel').carousel()
+  // let userEmail = store.user.email
+  // let whiskeys = data.whiskeys
+  // whiskeys.forEach(function (whiskey) {
+  //   let li3 = document.createElement("li")
+  //   li3.appendChild(document.create)
+  // })
 }
 
 const onGetBottlesFailure = function (error) {
@@ -64,7 +81,13 @@ const onGetBottlesFailure = function (error) {
 }
 
 const onFindBottleSuccess = function () {
-
+  // for (let i = 0; i < whiskeyImages.length; i++) {
+  //   $('<div class="item"><img src="' + whiskeyImages[i] + '"><div class="carousel-caption"></div></div>').appendTo('.carousel-inner')
+  //   $('<li data-target="#whiskeyCarousel" data-slide-to="' + i + '"></li>').appendTo('.carousel-indicators')
+  // }
+  // $('.item').first().addClass('active')
+  // $('.carousel-indicators > li').first().addClass('active')
+  // $$('#whiskeyCarousel').carousel()
 }
 
 const onFindBottleFailure = function (error) {
@@ -74,8 +97,8 @@ const onFindBottleFailure = function (error) {
 }
 
 module.exports = {
-  onRegisterSuccess,
-  onRegisterFailure,
+  onSignUpSuccess,
+  onSignUpFailure,
   onSignInSuccess,
   onSignInFailure,
   onSignOutSuccess,
@@ -83,5 +106,7 @@ module.exports = {
   onChangePasswordSuccess,
   onChangePasswordFailure,
   onGetBottlesSuccess,
-  onGetBottlesFailure
+  onGetBottlesFailure,
+  onFindBottleSuccess,
+  onFindBottleFailure
 }

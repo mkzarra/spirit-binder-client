@@ -36,9 +36,14 @@ $icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
 
 #filter-select {
   color: #a7e2ff;
+  float: left;
+  border: none;
+  background: #000000;
   clear: both;
   padding: 0.5%;
   font-weight: bold;
+  overflow: visible;
+  margin: 5%;
 }
 
 .images {
@@ -83,9 +88,10 @@ $icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
   margin: .3%;
   display: --webkit inline-block;
   float: right;
+  overflow: auto;
 }
 
 #whiskeyCarousel {
-  margin: auto;
+  margin: 8%;
   align-self: auto;
 }

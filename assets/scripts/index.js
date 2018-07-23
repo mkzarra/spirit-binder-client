@@ -7,11 +7,11 @@
 const events = require('./events')
 
 $(() => {
-  $('#register-modal').on('click', events.onEngageRegisterModal)
+  $('#sign-up-modal').on('click', events.onEngageSignUpModal)
   $('#sign-in-modal').on('click', events.onEngageSignInModal)
   $('#change-password-modal').on('click', events.onEngagePasswordChangeModal)
   $('#sign-out-modal').on('click', events.onSignOut)
-  $('#register-form').on('submit', events.onRegister)
+  $('#sign-up-form').on('submit', events.onSignUp)
   $('#change-password-form').on('submit', events.onChangePassword)
   $('#sign-in-form').on('submit', events.onSignIn)
   $('#filter-select').on('click', events.onGetBottles)
