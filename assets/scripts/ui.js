@@ -3,6 +3,7 @@ const events = require('./events')
 
 const whiskeyImages = ['../../../redemption-bourbon.png', '../../../lagavulin16_400x400.progressive.jpg', '../../../hibiki-japanese-harmony.jpg']
 
+
 const clearFormFields = function (formId) {
   $(formId).each(function() {
     this.reset()
@@ -59,6 +60,7 @@ const onChangePasswordFailure = function (error) {
 const onGetBottlesSuccess = function (data) {
   console.log(data)
   for (let i = 0; i < whiskeyImages.length; i++) {
+    $('#whiskeyCarousel').addClass('carousel slide')
     $('<div class="item"><img src="' + whiskeyImages[i] + '" class="images"><div class="carousel-caption"></div></div>').appendTo('.carousel-inner')
     $('<li data-target="#whiskeyCarousel" data-slide-to="' + i + '"></li>').appendTo('.carousel-indicators')
   }
@@ -66,12 +68,6 @@ const onGetBottlesSuccess = function (data) {
   $('.carousel-indicators > li').first().addClass('active')
   $('#whiskeyCarousel').css('display', 'block')
   $('#whiskeyCarousel').carousel()
-  // let userEmail = store.user.email
-  // let whiskeys = data.whiskeys
-  // whiskeys.forEach(function (whiskey) {
-  //   let li3 = document.createElement("li")
-  //   li3.appendChild(document.create)
-  // })
 }
 
 const onGetBottlesFailure = function (error) {
@@ -81,13 +77,9 @@ const onGetBottlesFailure = function (error) {
 }
 
 const onFindBottleSuccess = function () {
-  // for (let i = 0; i < whiskeyImages.length; i++) {
-  //   $('<div class="item"><img src="' + whiskeyImages[i] + '"><div class="carousel-caption"></div></div>').appendTo('.carousel-inner')
-  //   $('<li data-target="#whiskeyCarousel" data-slide-to="' + i + '"></li>').appendTo('.carousel-indicators')
-  // }
-  // $('.item').first().addClass('active')
-  // $('.carousel-indicators > li').first().addClass('active')
-  // $$('#whiskeyCarousel').carousel()
+  // search by name
+  // if name is not unique, show all with that name.
+  // show filter options
 }
 
 const onFindBottleFailure = function (error) {

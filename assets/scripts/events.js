@@ -17,6 +17,7 @@ const onEngagePasswordChangeModal = function () {
   event.preventDefault()
   $('#changePasswordModal').modal('show')
 }
+
 const onSignUp = function (event) {
   event.preventDefault()
   const data = getFormFields(event.target)
