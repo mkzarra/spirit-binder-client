@@ -48,13 +48,46 @@ const getBottles = function () {
   })
 }
 
-const findBottle = function () {
+const findBottle = function (data) {
   return $.ajax({
-    url: config.apiUrl + `/whiskeys/` + store.whiskey.id,
+    url: config.apiUrl + `/whiskeys`,
     method: 'GET',
     headers: {
       Authorization: 'Token token=' + store.user.token
+    },
+    data: data.whiskeys
+  })
+}
+
+const createBottle = function (data) {
+  return $.ajax({
+    url: config.apiUrl + `/whiskeys`,
+    method: 'POST',
+    headers: {
+      Authorization: 'Token token=' + store.user.token
+    },
+    data
+  })
+}
+
+const destroyBottle = function (id) {
+  return $.ajax({
+    url: config.apiUrl + `/whiskeys/` + id,
+    method: 'DELETE',
+    headers: {
+      Authorization: 'Token token=' + store.user.token
     }
+  })
+}
+
+const updateBottle = function (data) {
+  return $.ajax({
+    url: config.apiUrl + `/whiskeys/` + data.whiskeys.id,
+    method: 'PATCH',
+    headers: {
+      Authorization: 'Token token=' + store.user.token
+    },
+    data
   })
 }
 
@@ -64,5 +97,8 @@ module.exports = {
   changePassword,
   signOut,
   getBottles,
-  findBottle
+  findBottle,
+  createBottle,
+  destroyBottle,
+  updateBottle
 }

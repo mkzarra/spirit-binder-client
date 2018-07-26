@@ -17,6 +17,7 @@
     </head>
     <body id="spirit-binder" class="spiridex" align="center">
       <nav id="directory" class="actions">
+        
         <!-- Start Sign Up Modal -->
         <div class="modal fade" id="signUpModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog" role="document">
@@ -46,7 +47,7 @@
             </div>
           </div>
         </div>
-        <button id="sign-up-modal" type="button" class="userActionModal" align="center">Sign Up</button>
+        <button id="sign-up-modal" type="button" class="nav-actions" align="center">Sign Up</button>
         <!-- End Modal -->
         
         <!-- Start Sign-In Modal -->
@@ -77,7 +78,7 @@
             </div>
           </div>
         </div>
-        <button id="sign-in-modal" type="button" class="userActionModal" align="center">Sign In </button>
+        <button id="sign-in-modal" type="button" class="nav-actions" align="center">Sign In </button>
         <!-- End Modal -->
         
         <!-- Start Change Password Modal -->
@@ -108,7 +109,7 @@
             </div>
           </div>
         </div>
-        <button id="change-password-modal" type="button" class="userActionModal" align="center" style="display: none;">Change Password</button>
+        <button id="change-password-modal" type="button" class="nav-actions" align="center" style="display: none;">Change Password</button>
         <!-- End Modal -->
         
         <!-- Start Sign-Out Modal -->
@@ -129,30 +130,39 @@
             </div>
           </div>
         </div>
-        <button id="sign-out-modal" type="button" class="userActionModal" align="center" style="display: none;">Sign Out</button>
+        <button id="sign-out-modal" type="button" class="nav-actions" align="center" style="display: none;">Sign Out</button>
         <!-- End Modal -->
-        
+          <form id="search-form" style="display: none;">
+            <fieldset>
+              <div id="whiskey-show" class="form-group">
+               <input id="search-bar" class="text-input" type="text" name="whiskeys[name]" placeholder="search whiskey" style="display: none;">
+              <button id="search-by-name" type="submit" class="nav-actions">Find Whiskey</button>
+              </div>
+            </fieldset>
+          </form>
       </nav>
             <h1 id="branding" class="title" align="center">SpiritBinder</h1>
             <h4 id="message" class="title"></h4>
-      <button id="filter-select" class="actions" align="left" style="display: none;">Find a Bottle</button>
-      <!--Start Carousel-->
-      <div id="whiskeyCarousel" data-ride="carousel" style="display: none;">
-  <!-- Indicators -->
-  <ol class="carousel-indicators">
-  </ol>
-  <!-- Wrapper for slides -->
-  <div class="carousel-inner">
-    </div>
-  <!-- Left and right controls -->
-  <a class="left carousel-control" href="#whiskeyCarousel" data-slide="prev">
-    <span class="glyphicon glyphicon-chevron-left"></span>
-    <span class="sr-only">Previous</span>
-  </a>
-  <a class="right carousel-control" href="#whiskeyCarousel" data-slide="next">
-    <span class="glyphicon glyphicon-chevron-right"></span>
-    <span class="sr-only">Next</span>
-  </a>
-</div>
+      <button id="filter-select" class="ajax-actions" align="left" style="display: none;">See Whiskeys</button>
+      <!-- Start Filter Buttons -->
+      <form id="create-whiskey" class="ajax-forms">
+        <fieldset>
+          <input class="text-input" type="text" name="whiskeys[name]" placeholder="add name" style="display: none;">
+          <input class="text-input" type="text" name="whiskeys[region]" placeholder="add region" style="display: none;">
+          <input class="text-input" type="number" name="whiskey[age]" placeholder="add age in years as number" style="display: none;">
+          <input class="text-input" type="number" name="whiskey[price]" placeholder="add price. round to nearest dollar" style="display: none;">
+          <input class="text-input" type="text" name="whiskey[classification]" placeholder="add classification" style="display: none;">
+          <input class="text-input" type="text" name="whiskey[description]" placeholder="enter a short description" style="display: none;">
+          <button id="create-button" type="submit" class="ajax-actions" style="display: none;">Add Whiskey</button>
+        </fieldset>
+      </form>
+      <!-- <button type="submit" id="whiskey-region" class="filters" style="display: none;">Region</button>
+      <button type="submit" id="whiskey-min-age" class="filters" style="display: none;">Age</button>
+      <input type="range" min="0" max="50" value="2" class="slider" id="whiskey-min-age-slide" style="display: none;"> -->
+      <div id="content">
+        <ul id="whiskey-index"></ul>
+      </div>
     </body>
 </html>
+
+ 

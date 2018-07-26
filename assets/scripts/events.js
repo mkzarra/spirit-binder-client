@@ -3,6 +3,10 @@ const getFormFields = require('../../lib/get-form-fields.js')
 const spiritUi = require('./ui')
 const store = require('./store')
 
+const activateSearchBar = function (event) {
+  event.preventDefault()
+  $('#search-bar').css('display', 'inline-block')
+}
 const onEngageSignUpModal = function (event) {
   event.preventDefault()
   $('#signUpModal').modal('show')
@@ -55,7 +59,8 @@ const onChangePassword = function (event) {
   $('#changePasswordModal').modal('hide')
 }
 
-const onGetBottles = function () {
+const onGetBottles = function (event) {
+  event.preventDefault()
   spiritApi.getBottles()
     .then(spiritUi.onGetBottlesSuccess)
     .catch(spiritUi.onGetBottlesFailure)
@@ -63,12 +68,106 @@ const onGetBottles = function () {
 
 const onFindBottle = function (event) {
   event.preventDefault()
-  spiritApi.findBottle(whiskey.id)
-    .then(spiritUi.onFindBottleSuccess)
-    .catch(spiritUi.onFindBottleFailure)
+  const data = getFormFields(event.target)
+  spiritApi.findBottle(data)
+      .then(spiritUi.onFindBottleSuccess)
+      .catch(spiritUi.onFindBottleFailure)
+}
+
+const onCreateBottle = function (event) {
+  event.preventDefault()
+  const data = getFormFields(event.target)
+  const whiskeys = data.whiskeys
+  if (whiskeys.name === '') {
+    $('#message').text('Name is required')
+    $('#message').css('color', 'red')
+    return false
+  }
+  if (whiskeys.region === '') {
+    $('#message').text('Region is required')
+    $('#message').css('color', 'red')
+    return false
+  }
+  if (whiskeys.age === null) {
+    $('#message').text('Age is required')
+    $('#message').css('color', 'red')
+    return false
+  }
+  if (whiskeys.price === null) {
+    $('#message').text('Price is required')
+    $('#message').css('color', 'red')
+    return false
+  }
+  if (whiskeys.classification === '') {
+    $('#message').text('Class is required')
+    $('#message').css('color', 'red')
+    return false
+  }
+  if (whiskeys.description === '') {
+    $('#message').text('Description is required')
+    $('#message').css('color', 'red')
+    return false
+  }
+  spiritApi.createBottle(data)
+    .then(spiritsUi.onCreateSuccess)
+    .catch(spiritUi.onCreateError)
+}
+
+const onDeleteBottle = function (event) {
+  event.preventDefault()
+  const data = getFormFields(event.target)
+  const whiskeys = data.whiskeys
+  if (whiskeys.id.length !== 0) {
+    spiritApi.destroyBottle(whiskeys.id)
+      .then(spiritUi.onDeleteSuccess)
+      .catch(spiritUi.onDeleteFailure)
+  }
+}
+
+const onUpdateBottle = function (event) {
+  event.preventDefault()
+  const data = getFormFields(event.target)
+  const whiskeys = data.whiskeys
+  if (whiskeys.name === '') {
+    $('#message').text('Name is required')
+    $('#message').css('color', 'red')
+    return false
+  }
+  if (whiskeys.region === '') {
+    $('#message').text('Region is required')
+    $('#message').css('color', 'red')
+    return false
+  }
+  if (whiskeys.age === null) {
+    $('#message').text('Age is required')
+    $('#message').css('color', 'red')
+    return false
+  }
+  if (whiskeys.price === null) {
+    $('#message').text('Price is required')
+    $('#message').css('color', 'red')
+    return false
+  }
+  if (whiskeys.classification === '') {
+    $('#message').text('Class is required')
+    $('#message').css('color', 'red')
+    return false
+  }
+  if (whiskeys.description === '') {
+    $('#message').text('Description is required')
+    $('#message').css('color', 'red')
+    return false
+  }
+  if (whiskeys.id.length !== 0) {
+    spiritApi.updateBottle(data)
+      .then(spiritUi.onUpdateBottleSuccess)
+      .catch(spiritUi.onUpdateBottleFailure)
+  }
+  
 }
 
 module.exports = {
+  activateSearchBar,
   onEngageSignUpModal,
   onEngageSignInModal,
   onEngagePasswordChangeModal,
@@ -77,5 +176,8 @@ module.exports = {
   onSignOut,
   onChangePassword,
   onGetBottles,
-  onFindBottle
+  onFindBottle,
+  onCreateBottle,
+  onDeleteBottle,
+  onUpdateBottle
 }

@@ -22,19 +22,25 @@ $icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
   align-content: center;
 }
 
+#content {
+  overflow: auto;
+}
+
 .close {
   color: #666666;
 }
 
 #directory {
   padding: 2%;
+  display: block;
+  width: 100%;
   clear: both;
   margin: auto;
   background-color: #13313d;
 }
 
 
-#filter-select {
+.ajax-actions {
   color: #a7e2ff;
   float: left;
   border: none;
@@ -42,7 +48,7 @@ $icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
   clear: both;
   padding: 0.5%;
   font-weight: bold;
-  overflow: visible;
+  overflow: auto;
   margin: 5%;
 }
 
@@ -70,6 +76,21 @@ $icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
   font-size: 180%;
 }
 
+.nav-actions {
+  color: #a7e2ff;
+  background-color: #13313d;
+  font-weight: bold;
+  border: none;
+  margin: .3%;
+  display: block;
+  float: right;
+  overflow: auto;
+}
+
+#search-by-name {
+  display: inline;
+}
+
 #spirit-binder {
   background-color: #000000;
   background-size: cover;
@@ -78,17 +99,6 @@ $icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
 .text-input {
   background-color: #010101;
   color: #7a7a7a;
-}
-
-.userActionModal {
-  color: #a7e2ff;
-  background-color: #13313d;
-  font-weight: bold;
-  border: none;
-  margin: .3%;
-  display: --webkit inline-block;
-  float: right;
-  overflow: auto;
 }
 
 #whiskeyCarousel {
