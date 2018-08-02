@@ -31,7 +31,9 @@ const onSignInSuccess = function (data) {
   $('#filter-select').css('display', 'block')
   $('#search-form').css('display', 'block')
   $('#search-bar').css('display', 'block')
-  $('#create-button').css('display', 'block')
+  $('#show-create-forms').css('display', 'block')
+  $('#delete-button').css('display', 'block')
+  $('#delete-form-field').css('display', 'block')
   clearFormFields()
 }
 
@@ -41,14 +43,16 @@ const onSignInFailure = function (error) {
 
 const onSignOutSuccess = function () {
   store.user = null
+  $('#signOutModal').modal('show')
   $('#sign-out-modal').css('display', 'none')
   $('#sign-up-modal').css('display', 'block')
   $('#sign-in-modal').css('display', 'block')
   $('#change-password-modal').css('display', 'none')
   $('#filter-select').css('display', 'none')
-  $('#search-form').css('display', 'none')
+  $('#search-by-name').css('display', 'none')
   $('#search-bar').css('display', 'none')
   $('#create-button').css('display', 'none')
+  $('#show-create-forms').css('display', 'none')
 }
 
 const onSignOutFailure = function (error) {
@@ -56,6 +60,7 @@ const onSignOutFailure = function (error) {
 }
 
 const onChangePasswordSuccess = function () {
+  $('#changePasswordModal').modal('hide')
   $('#change-password-form-section').hide()  
   clearFormFields()
 }
@@ -76,7 +81,6 @@ const onGetBottlesSuccess = function (data) {
     <li>Price: ${whiskeys.price}</li>
     <li>Class: ${whiskeys.classification}</li>
     <li>Description: ${whiskeys.description}</li>
-    <button id="delete-button" class="ajax-actions" type="submit">Remove</button>
     </div>
   `)
     $('#whiskey-index').append(whiskeyHTML)
@@ -112,7 +116,6 @@ const onFindBottleSuccess = function (data) {
     <li>Price: ${whiskeys.price}</li>
     <li>Class: ${whiskeys.classification}</li>
     <li>Description: ${whiskeys.description}</li>
-    <button id="delete-button" class="ajax-actions" type="submit">Remove</button>
     </div>
   `)
     $('#whiskey-index').append(whiskeyHTML)
@@ -139,6 +142,18 @@ const onFindBottleFailure = function (error) {
 // }
 
 const onCreateSuccess = function (data) {
+  const whiskeyHTML = (`
+  <div class="clear-index">
+    <li class="whiskey-name">${data.whiskeys.name}</li>
+    <li>Region: ${data.whiskeys.region}</li>
+    <li>Age: ${data.whiskeys.age}</li>
+    <li>Price: ${data.whiskeys.price}</li>
+    <li>Class: ${data.whiskeys.classification}</li>
+    <li>Description: ${data.whiskeys.description}</li>
+    <button id="delete-button" class="ajax-actions" type="submit">Remove</button>
+    </div>
+  `)
+  $('#whiskey-index').append(whiskeyHTML)
   store.whiskeys = data.whiskeys
 }
 

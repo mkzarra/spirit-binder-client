@@ -1,11 +1,16 @@
 const spiritApi = require('./api')
 const getFormFields = require('../../lib/get-form-fields.js')
 const spiritUi = require('./ui')
-const store = require('./store')
+// const store = require('./store')
 
-const activateSearchBar = function (event) {
+
+
+const activateCreateFields = function (event) {
   event.preventDefault()
-  $('#search-bar').css('display', 'inline-block')
+  $('#create-whiskey').css('display', 'block')
+  $('#create-whiskey-fields').css('display', 'block')
+  $('.text-input-create').css('display', 'block')
+  $('#create-button').css('display', 'block')
 }
 const onEngageSignUpModal = function (event) {
   event.preventDefault()
@@ -43,20 +48,17 @@ const onSignIn = function (event) {
 
 const onSignOut = function (event) {
   event.preventDefault()
-  $('#signOutModal').modal('show')
   spiritApi.signOut()
-    .then(spiritUi.signOutSuccess)
-    .catch(spiritUi.signOutFailure)
+    .then(spiritUi.onSignOutSuccess)
+    .catch(spiritUi.onSignOutFailure)
 }
 
 const onChangePassword = function (event) {
   event.preventDefault()
   const data = getFormFields(event.target)
-  // console.log(data)
   spiritApi.changePassword(data)
     .then(spiritUi.onChangePasswordSuccess)
     .catch(spiritUi.onChangePasswordFailure)
-  $('#changePasswordModal').modal('hide')
 }
 
 const onGetBottles = function (event) {
@@ -77,6 +79,8 @@ const onFindBottle = function (event) {
 const onCreateBottle = function (event) {
   event.preventDefault()
   const data = getFormFields(event.target)
+  console.log(data)
+  debugger
   const whiskeys = data.whiskeys
   if (whiskeys.name === '') {
     $('#message').text('Name is required')
@@ -107,21 +111,23 @@ const onCreateBottle = function (event) {
     $('#message').text('Description is required')
     $('#message').css('color', 'red')
     return false
+  } else {
+    console.log(store.whiskeys)
+    debugger
+    this.push(store.whiskeys)
+    spiritApi.createBottle()
+      .then(spiritUi.onCreateSuccess)
+      .catch(spiritUi.onCreateError)
   }
-  spiritApi.createBottle(data)
-    .then(spiritsUi.onCreateSuccess)
-    .catch(spiritUi.onCreateError)
 }
 
 const onDeleteBottle = function (event) {
   event.preventDefault()
   const data = getFormFields(event.target)
-  const whiskeys = data.whiskeys
-  if (whiskeys.id.length !== 0) {
-    spiritApi.destroyBottle(whiskeys.id)
+    spiritApi.destroyBottle(data.whiskeys.id)
       .then(spiritUi.onDeleteSuccess)
+      .then(spiritUi.onGetBottlesSuccess)
       .catch(spiritUi.onDeleteFailure)
-  }
 }
 
 const onUpdateBottle = function (event) {
@@ -167,7 +173,7 @@ const onUpdateBottle = function (event) {
 }
 
 module.exports = {
-  activateSearchBar,
+  activateCreateFields,
   onEngageSignUpModal,
   onEngageSignInModal,
   onEngagePasswordChangeModal,

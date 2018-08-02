@@ -16,9 +16,10 @@ $(() => {
   $('#sign-in-form').on('submit', events.onSignIn)
   $('#filter-select').on('click', events.onGetBottles)
   $('#search-form').on('submit', events.onFindBottle)
-  $('#create-button').on('submit', events.onCreateBottle)
-  $('#delete-button').on('submit', events.onDeleteBottle)
+  $('#create-whiskey').on('submit', events.onCreateBottle)
+  $('#delete-form').on('submit', events.onDeleteBottle)
   $('#update-button').on('submit', events.onUpdateBottle)
+  $('#show-create-forms').on('click', events.activateCreateFields)
 })
 
 module.exports = {

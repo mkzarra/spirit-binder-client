@@ -59,14 +59,14 @@ const findBottle = function (data) {
   })
 }
 
-const createBottle = function (data) {
+const createBottle = function () {
   return $.ajax({
     url: config.apiUrl + `/whiskeys`,
     method: 'POST',
     headers: {
       Authorization: 'Token token=' + store.user.token
     },
-    data
+    data: {}
   })
 }
 

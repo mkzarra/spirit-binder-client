@@ -140,22 +140,33 @@
               </div>
             </fieldset>
           </form>
+                <button id="filter-select" class="ajax-actions" align="left" style="display: none;">See Whiskeys</button>
+                <!-- Start Filter Buttons -->
+                <form id="create-whiskey" class="ajax-forms">
+                  <fieldset id="create-whiskey-fields">
+                    <div class="form-group">
+                      <input class="text-input-create" type="text" name="whiskeys[name]" placeholder="add name" style="display: none;">
+                      <input class="text-input-create" type="text" name="whiskeys[region]" placeholder="add region" style="display: none;">
+                      <input class="text-input-create" type="number" name="whiskeys[age]" placeholder="add age in years as number" style="display: none;">
+                      <input class="text-input-create" type="number" name="whiskeys[price]" placeholder="add price. round to nearest dollar" style="display: none;">
+                      <input class="text-input-create" type="text" name="whiskeys[classification]" placeholder="add classification" style="display: none;">
+                      <input class="text-input-create" type="text" name="whiskeys[description]" placeholder="enter a short description" style="display: none;">                    </div>
+                  </fieldset>
+                <button id="create-button" type="submit" class="ajax-actions" style="display: none;">Add Whiskey</button>
+                </form>
+                <button id="show-create-forms" type="submit" class="ajax-actions" style="display: none;">Add Whiskey Menu</button>
+                <form id="delete-form" class="ajax-forms">
+                  <div class="form-group">
+                    <fieldset id="delete-whiskey">
+                      <input id="delete-form-field" class="text-input" type="number" name="whiskeys[id]" placeholder="enter id" style="display: none;">
+                      <button id="delete-button" class="ajax-actions" type="submit" style="display: none;">Remove</button>
+                    </fieldset>
+                  </div>
+                </form>
       </nav>
             <h1 id="branding" class="title" align="center">SpiritBinder</h1>
             <h4 id="message" class="title"></h4>
-      <button id="filter-select" class="ajax-actions" align="left" style="display: none;">See Whiskeys</button>
-      <!-- Start Filter Buttons -->
-      <form id="create-whiskey" class="ajax-forms">
-        <fieldset>
-          <input class="text-input" type="text" name="whiskeys[name]" placeholder="add name" style="display: none;">
-          <input class="text-input" type="text" name="whiskeys[region]" placeholder="add region" style="display: none;">
-          <input class="text-input" type="number" name="whiskey[age]" placeholder="add age in years as number" style="display: none;">
-          <input class="text-input" type="number" name="whiskey[price]" placeholder="add price. round to nearest dollar" style="display: none;">
-          <input class="text-input" type="text" name="whiskey[classification]" placeholder="add classification" style="display: none;">
-          <input class="text-input" type="text" name="whiskey[description]" placeholder="enter a short description" style="display: none;">
-          <button id="create-button" type="submit" class="ajax-actions" style="display: none;">Add Whiskey</button>
-        </fieldset>
-      </form>
+     
       <!-- <button type="submit" id="whiskey-region" class="filters" style="display: none;">Region</button>
       <button type="submit" id="whiskey-min-age" class="filters" style="display: none;">Age</button>
       <input type="range" min="0" max="50" value="2" class="slider" id="whiskey-min-age-slide" style="display: none;"> -->
