@@ -96,6 +96,7 @@ const onChangePasswordFailure = error => {
 }
 
 const onGetBottlesSuccess = data => {
+  $('#message').css('display', 'none')
   renderWhiskeys(data)
 }
 
