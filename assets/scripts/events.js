@@ -1,33 +1,39 @@
 const spiritApi = require('./api')
 const getFormFields = require('../../lib/get-form-fields.js')
 const spiritUi = require('./ui')
-// const store = require('./store')
 
-
-
-const activateCreateFields = function (event) {
+const activateCreateFields = event => {
   event.preventDefault()
   $('#create-whiskey').css('display', 'block')
   $('#create-whiskey-fields').css('display', 'block')
   $('.text-input-create').css('display', 'block')
   $('#create-button').css('display', 'block')
 }
-const onEngageSignUpModal = function (event) {
+
+const activateUpdateFields = event => {
+  event.preventDefault()
+  $('#update-whiskey').css('display', 'block')
+  $('#udpate-whiskey-fields').css('display', 'block')
+  $('.text-input-update').css('display', 'block')
+  $('#update-button').css('display', 'block')
+}
+
+const onEngageSignUpModal = event => {
   event.preventDefault()
   $('#signUpModal').modal('show')
 }
 
-const onEngageSignInModal = function (event) {
+const onEngageSignInModal = event => {
   event.preventDefault()
   $('#signInModal').modal('show')
 }
 
-const onEngagePasswordChangeModal = function () {
+const onEngagePasswordChangeModal = event => {
   event.preventDefault()
   $('#changePasswordModal').modal('show')
 }
 
-const onSignUp = function (event) {
+const onSignUp = event => {
   event.preventDefault()
   const data = getFormFields(event.target)
   spiritApi.signUp(data)
@@ -36,24 +42,23 @@ const onSignUp = function (event) {
   $('#signUpModal').modal('hide')
 }
 
-const onSignIn = function (event) {
+const onSignIn = event => {
   event.preventDefault()
   const data = getFormFields(event.target)
-  console.log(data)
   spiritApi.signIn(data)
     .then(spiritUi.onSignInSuccess)
     .catch(spiritUi.onSignInFailure)
   $('#signInModal').modal('hide')
 }
 
-const onSignOut = function (event) {
+const onSignOut = event => {
   event.preventDefault()
   spiritApi.signOut()
     .then(spiritUi.onSignOutSuccess)
     .catch(spiritUi.onSignOutFailure)
 }
 
-const onChangePassword = function (event) {
+const onChangePassword = event => {
   event.preventDefault()
   const data = getFormFields(event.target)
   spiritApi.changePassword(data)
@@ -61,26 +66,29 @@ const onChangePassword = function (event) {
     .catch(spiritUi.onChangePasswordFailure)
 }
 
-const onGetBottles = function (event) {
+const onGetBottles = event => {
   event.preventDefault()
   spiritApi.getBottles()
     .then(spiritUi.onGetBottlesSuccess)
     .catch(spiritUi.onGetBottlesFailure)
 }
 
-const onFindBottle = function (event) {
+const onFindBottle = event => {
   event.preventDefault()
   const data = getFormFields(event.target)
-  spiritApi.findBottle(data)
+  if (data.whiskeys.id.length !== 0) {
+  spiritApi.findBottle(data.whiskeys.id)
       .then(spiritUi.onFindBottleSuccess)
       .catch(spiritUi.onFindBottleFailure)
+  } else {
+    $('#message').text('Please provide id')
+    $('#message').css('color', 'red')
+  }
 }
 
-const onCreateBottle = function (event) {
+const onCreateBottle = event => {
   event.preventDefault()
   const data = getFormFields(event.target)
-  console.log(data)
-  debugger
   const whiskeys = data.whiskeys
   if (whiskeys.name === '') {
     $('#message').text('Name is required')
@@ -112,25 +120,21 @@ const onCreateBottle = function (event) {
     $('#message').css('color', 'red')
     return false
   } else {
-    console.log(store.whiskeys)
-    debugger
-    this.push(store.whiskeys)
-    spiritApi.createBottle()
+    spiritApi.createBottle(data)
       .then(spiritUi.onCreateSuccess)
       .catch(spiritUi.onCreateError)
   }
 }
 
-const onDeleteBottle = function (event) {
+const onDeleteBottle = event => {
   event.preventDefault()
   const data = getFormFields(event.target)
     spiritApi.destroyBottle(data.whiskeys.id)
       .then(spiritUi.onDeleteSuccess)
-      .then(spiritUi.onGetBottlesSuccess)
       .catch(spiritUi.onDeleteFailure)
 }
 
-const onUpdateBottle = function (event) {
+const onUpdateBottle =  event => {
   event.preventDefault()
   const data = getFormFields(event.target)
   const whiskeys = data.whiskeys
@@ -168,12 +172,12 @@ const onUpdateBottle = function (event) {
     spiritApi.updateBottle(data)
       .then(spiritUi.onUpdateBottleSuccess)
       .catch(spiritUi.onUpdateBottleFailure)
-  }
-  
+  } 
 }
 
 module.exports = {
   activateCreateFields,
+  activateUpdateFields,
   onEngageSignUpModal,
   onEngageSignInModal,
   onEngagePasswordChangeModal,

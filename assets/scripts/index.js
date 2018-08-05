@@ -18,8 +18,10 @@ $(() => {
   $('#search-form').on('submit', events.onFindBottle)
   $('#create-whiskey').on('submit', events.onCreateBottle)
   $('#delete-form').on('submit', events.onDeleteBottle)
-  $('#update-button').on('submit', events.onUpdateBottle)
+  $('#update-whiskey').on('submit', events.onUpdateBottle)
+  $('#show-whiskey-form').on('submit', events.onFindBottle)
   $('#show-create-forms').on('click', events.activateCreateFields)
+  $('#show-update-forms').on('click', events.activateUpdateFields)
 })
 
 module.exports = {

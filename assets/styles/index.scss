@@ -5,6 +5,9 @@ $icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
   color: #04aafa;
   font-family: 'Passion One', cursive;
   text-align: center;
+  display: block;
+  margin: auto;
+  clear: both;
 }
 
 .btn-primary {
@@ -23,6 +26,7 @@ $icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
 }
 
 #content {
+  color: #cccccc;
   overflow: auto;
 }
 
@@ -40,16 +44,15 @@ $icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
 }
 
 
-.ajax-actions {
+.ajax-actions, .ajax-forms {
   color: #a7e2ff;
   float: left;
   border: none;
-  background: #000000;
-  clear: both;
-  padding: 0.5%;
+  background: #13313d;
+  clear: right;
   font-weight: bold;
   overflow: auto;
-  margin: 5%;
+  margin: .3%;
 }
 
 .images {
@@ -88,7 +91,8 @@ $icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
 }
 
 #search-by-name {
-  display: inline;
+  display: block;
+  float: left;
 }
 
 #spirit-binder {
@@ -96,9 +100,15 @@ $icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
   background-size: cover;
 }
 
-.text-input, .text-input-create {
+.text-input, .text-input-create, .text-input-update {
   background-color: #010101;
   color: #7a7a7a;
+}
+
+.whiskey-name {
+  font-weight: bold;
+  font-size: 150%;
+  color: #a7e2ff;
 }
 
 #whiskeyCarousel {

@@ -1,7 +1,7 @@
 const config = require('./config')
 const store = require('./store')
 
-const signUp = function (data) {
+const signUp = data => {
   return $.ajax({
     url: config.apiUrl + `/sign-up`,
     method: 'POST',
@@ -9,7 +9,7 @@ const signUp = function (data) {
   })
 }
 
-const signIn = function (data) {
+const signIn = data => {
   return $.ajax({
     url: config.apiUrl + `/sign-in`,
     method: 'POST',
@@ -17,7 +17,7 @@ const signIn = function (data) {
   })
 }
 
-const changePassword = function(data) {
+const changePassword = data => {
   return $.ajax({
     url: config.apiUrl + '/change-password',
     method: 'PATCH',
@@ -28,7 +28,7 @@ const changePassword = function(data) {
   })
 }
 
-const signOut = function () {
+const signOut = () => {
   return $.ajax({
     url: config.apiUrl + '/sign-out',
     method: 'DELETE',
@@ -38,7 +38,7 @@ const signOut = function () {
   })
 }
 
-const getBottles = function () {
+const getBottles = () => {
   return $.ajax({
     url: config.apiUrl + `/whiskeys`,
     method: 'GET',
@@ -48,29 +48,28 @@ const getBottles = function () {
   })
 }
 
-const findBottle = function (data) {
+const findBottle = id => {
   return $.ajax({
-    url: config.apiUrl + `/whiskeys`,
+    url: config.apiUrl + `/whiskeys/` + id,
     method: 'GET',
     headers: {
       Authorization: 'Token token=' + store.user.token
-    },
-    data: data.whiskeys
+    }
   })
 }
 
-const createBottle = function () {
+const createBottle = data => {
   return $.ajax({
-    url: config.apiUrl + `/whiskeys`,
+    url: config.apiUrl + `/whiskeys/`,
     method: 'POST',
     headers: {
       Authorization: 'Token token=' + store.user.token
     },
-    data: {}
+    data
   })
 }
 
-const destroyBottle = function (id) {
+const destroyBottle = id => {
   return $.ajax({
     url: config.apiUrl + `/whiskeys/` + id,
     method: 'DELETE',
@@ -80,7 +79,7 @@ const destroyBottle = function (id) {
   })
 }
 
-const updateBottle = function (data) {
+const updateBottle = data => {
   return $.ajax({
     url: config.apiUrl + `/whiskeys/` + data.whiskeys.id,
     method: 'PATCH',
