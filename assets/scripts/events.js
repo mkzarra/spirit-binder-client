@@ -76,14 +76,9 @@ const onGetBottles = event => {
 const onFindBottle = event => {
   event.preventDefault()
   const data = getFormFields(event.target)
-  if (data.whiskeys.id.length !== 0) {
   spiritApi.findBottle(data.whiskeys.id)
       .then(spiritUi.onFindBottleSuccess)
       .catch(spiritUi.onFindBottleFailure)
-  } else {
-    $('#message').text('Please provide id')
-    $('#message').css('color', 'red')
-  }
 }
 
 const onCreateBottle = event => {
