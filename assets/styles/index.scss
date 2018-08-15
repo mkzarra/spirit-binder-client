@@ -65,6 +65,10 @@ $icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
   align-self: center;
 }
 
+li {
+  list-style-type: none;
+}
+
 .modal-body {
   background-color: #151515;
 }

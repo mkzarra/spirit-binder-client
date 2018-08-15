@@ -95,6 +95,15 @@ const onChangePasswordFailure = error => {
   $('#message').text(`Error on Changing Password: ${error}`)
 }
 
+const onSearchSuccess = data => {
+  $('#message').css('display', 'none')
+  renderWhiskeys(data)
+}
+
+const onSearchFailure = error => {
+  $('#message').text(`Could not find what you're looking for: ${error}`)
+}
+
 const onGetBottlesSuccess = data => {
   $('#message').css('display', 'none')
   renderWhiskeys(data)
@@ -193,6 +202,8 @@ module.exports = {
   onSignOutFailure,
   onChangePasswordSuccess,
   onChangePasswordFailure,
+  onSearchSuccess,
+  onSearchFailure,
   onGetBottlesSuccess,
   onGetBottlesFailure,
   onFindBottleSuccess,

@@ -66,6 +66,14 @@ const onChangePassword = event => {
     .catch(spiritUi.onChangePasswordFailure)
 }
 
+const onSearchByName = event => {
+  event.preventDefault()
+  const data = getFormFields(event.target)
+  spiritApi.searchByName(data)
+    .then(spiritUi.onSearchSuccess)
+    .then(spiritUi.onSearchFailure)
+}
+
 const onGetBottles = event => {
   event.preventDefault()
   spiritApi.getBottles()
@@ -180,6 +188,7 @@ module.exports = {
   onSignIn,
   onSignOut,
   onChangePassword,
+  onSearchByName,
   onGetBottles,
   onFindBottle,
   onCreateBottle,

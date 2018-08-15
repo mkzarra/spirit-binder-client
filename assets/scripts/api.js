@@ -38,6 +38,17 @@ const signOut = () => {
   })
 }
 
+const searchByName = data => {
+  return $.ajax({
+    url: config.apiUrl + `/whiskeys`,
+    method: 'GET',
+    headers: {
+      Authorization: 'Token token=' + store.user.token
+    },
+    data: data.whiskeys
+  })
+}
+
 const getBottles = () => {
   return $.ajax({
     url: config.apiUrl + `/whiskeys`,
@@ -95,6 +106,7 @@ module.exports = {
   signIn,
   changePassword,
   signOut,
+  searchByName,
   getBottles,
   findBottle,
   createBottle,
