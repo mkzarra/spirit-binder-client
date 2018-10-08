@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <title>Example</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+
+      <!-- Do not add `link` tags-->
+      <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+
+      <!-- Do not add `script` tags-->
+      <script src="public/vendor.js" type="text/javascript" charset="utf-8" defer></script>
+      <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
+      <style>
+        @import url('https://fonts.googleapis.com/css?family=Passion+One');
+      </style>
+
+    </head>
+    <body id="spirit-binder" class="spiridex" align="center">
+      <nav id="directory" class="actions">
+        
+        <!-- Start Sign Up Modal -->
+        <div class="modal fade" id="signUpModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Sign Up</h5>
+                <button type="button" id="exitSignUpButton" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <form id="sign-up-form">
+                  <fieldset>
+                    <div class="modal-body">
+                      <label class="field-name" for="name"></label>
+                      <input type="text" class="text-input" name="credentials[email]" id="email" placeholder="Enter Email">
+                      <input type="password" class="text-input" name="credentials[password]" id="create-password" placeholder="Create Password">
+                      <input type="password" class="text-input" name="credentials[password_confirmation]" id="confirm-password" placeholder="Confirm Password">
+                    </div>
+                  </fieldset>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" id="sign-up-button" class="btn btn-primary">Save</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button id="sign-up-modal" type="button" class="nav-actions" align="center">Sign Up</button>
+        <!-- End Modal -->
+        
+        <!-- Start Sign-In Modal -->
+        <div class="modal fade" id="signInModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Sign In</h5>
+                <button type="button" id="exitSignInButton" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <form id="sign-in-form">
+                  <fieldset>
+                    <div class="modal-body">
+                      <label class="field-name" for="name"></label>
+                      <input type="text" class="text-input" name="credentials[email]" id="authorized-user" placeholder="Enter Email">
+                      <input type="password" class="text-input" name="credentials[password]" id="enter-password" placeholder="Enter Password">
+                    </div>
+                  </fieldset>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" id="sign-in-button" class="btn btn-primary">Save</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button id="sign-in-modal" type="button" class="nav-actions" align="center">Sign In </button>
+        <!-- End Modal -->
+        
+        <!-- Start Change Password Modal -->
+        <div class="modal fade" id="changePasswordModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Change Password</h5>
+                <button type="button" id="exitPasswordChangeButton" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <form id="change-password-form">
+                  <fieldset>
+                    <div class="modal-body">
+                      <label class="field-name" for="name"></label>
+                      <input class="text-input" type="password" name="passwords[old]" id="old-password" placeholder="Old Password">
+                      <input class="text-input" type="password" name="passwords[new]" id="new-password" placeholder="New Password">
+                    </div>
+                  </fieldset>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" id="change-password-button" class="btn btn-primary">Save</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button id="change-password-modal" type="button" class="nav-actions" align="center" style="display: none;">Change Password</button>
+        <!-- End Modal -->
+        
+        <!-- Start Sign-Out Modal -->
+        <div class="modal fade" id="signOutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Signed Out</h5>
+                <button type="button" id="exitSignOutButton" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button id="sign-out-modal" type="button" class="nav-actions" align="center" style="display: none;">Sign Out</button>
+        <!-- End Modal -->
+          <form id="search-form" style="display: none;">
+            <fieldset>
+              <div id="whiskey-show" class="form-group">
+               <input id="search-bar" class="text-input" type="text" name="whiskeys[name]" placeholder="search whiskey" style="display: none;">
+              </div>
+            </fieldset>
+            <button id="search-by-name" type="submit" class="nav-actions">Find Whiskey</button>
+          </form>
+                <button id="filter-select" class="ajax-actions" align="left" style="display: none;">See Whiskeys</button>
+                <!-- Start Filter Buttons -->
+                <form id="create-whiskey" class="ajax-forms">
+                  <fieldset id="create-whiskey-fields">
+                    <div class="form-group">
+                      <input class="text-input-create" type="text" name="whiskeys[name]" placeholder="add name" style="display: none;">
+                      <input class="text-input-create" type="text" name="whiskeys[region]" placeholder="add region" style="display: none;">
+                      <input class="text-input-create" type="number" name="whiskeys[age]" placeholder="add age in years as number" style="display: none;">
+                      <input class="text-input-create" type="number" name="whiskeys[price]" placeholder="add price. round to nearest dollar" style="display: none;">
+                      <input class="text-input-create" type="text" name="whiskeys[classification]" placeholder="add classification" style="display: none;">
+                      <input class="text-input-create" type="text" name="whiskeys[description]" placeholder="enter a short description" style="display: none;">
+                    </div>
+                  </fieldset>
+                <button id="create-button" type="submit" class="ajax-actions" style="display: none;">Save</button>
+                </form>
+                <button id="show-create-forms" type="submit" class="ajax-actions" style="display: none;">Add Whiskey</button>
+                      <form id="update-whiskey" class="ajax-forms">
+                        <fieldset id="update-whiskey-fields">
+                          <div class="form-group">
+                            <input class="text-input-update" type="number" name="whiskeys[id]" placeholder="whiskey id" style="display: none;">
+                            <input class="text-input-update" type="text" name="whiskeys[name]" placeholder="change name" style="display: none;">
+                            <input class="text-input-update" type="text" name="whiskeys[region]" placeholder="change region" style="display: none;">
+                            <input class="text-input-update" type="number" name="whiskeys[age]" placeholder="change age in years as number" style="display: none;">
+                            <input class="text-input-update" type="number" name="whiskeys[price]" placeholder="change price. round to nearest dollar" style="display: none;">
+                            <input class="text-input-update" type="text" name="whiskeys[classification]" placeholder="change classification" style="display: none;">
+                            <input class="text-input-update" type="text" name="whiskeys[description]" placeholder="modify description" style="display: none;">
+                          </div>
+                        </fieldset>
+                        <button id="update-button" type="submit" class="ajax-actions" style="display: none;">Save</button>
+                      </form>
+                      <button id="show-update-forms" type="submit" class="ajax-actions" style="display: none;">Update Whiskey</button>
+                <form id="delete-form" class="ajax-forms">
+                  <div class="form-group">
+                    <fieldset id="delete-whiskey">
+                      <input id="delete-form-field" class="text-input" type="number" name="whiskeys[id]" placeholder="delete by id" style="display: none;">
+                      <button id="delete-button" class="ajax-actions" type="submit" style="display: none;">Remove</button>
+                    </fieldset>
+                  </div>
+                </form>
+                <form id="show-whiskey-form" class="ajax-forms">
+                  <div class="form-group">
+                    <fieldset id="show-whiskey-field">
+                      <input id="show-whiskey-form-field" class="text-input" type="number" name="whiskeys[id]" placeholder="show by id" style="display: none;">
+                      <button id="show-whiskey-button" class="ajax-actions" type="submit" style="display: none;">Show Whiskey</button>
+                    </fieldset>
+                  </div>
+                </form>
+      </nav>
+            <h1 id="branding" class="title" align="center">SpiritBinder</h1>
+            <h4 id="message" class="title"></h4>
+     
+      <!-- <button type="submit" id="whiskey-region" class="filters" style="display: none;">Region</button>
+      <button type="submit" id="whiskey-min-age" class="filters" style="display: none;">Age</button>
+      <input type="range" min="0" max="50" value="2" class="slider" id="whiskey-min-age-slide" style="display: none;"> -->
+      <div id="content">
+        <ul id="whiskey-index"></ul>
+      </div>
+    </body>
+</html>
+
+ 
