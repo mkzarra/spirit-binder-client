@@ -80,12 +80,35 @@ const createBottle = data => {
   })
 }
 
-const destroyBottle = id => {
+const saveBottle = data => {
   return $.ajax({
-    url: config.apiUrl + `/whiskeys/` + id,
+    url: config.apiUrl + '/favorite/',
+    method: 'POST',
+    headers: {
+      Authorization: 'Token token=' + store.user.token
+    },
+    data: {
+      favorite: {
+        id: data.id,
+        user_id: store.user.id,
+        whiskey_id: data.whiskey_id
+      }
+    }
+  })
+}
+
+const deleteFavorite = id => {
+  return $.ajax({
+    url: config.apiUrl + `/favorite/` + id,
     method: 'DELETE',
     headers: {
       Authorization: 'Token token=' + store.user.token
+    },
+    data: {
+      favorite: {
+        whiskey_id,
+        user_id: store.user.id
+      }
     }
   })
 }
@@ -110,6 +133,7 @@ module.exports = {
   getBottles,
   findBottle,
   createBottle,
-  destroyBottle,
+  saveBottle,
+  deleteFavorite,
   updateBottle
 }

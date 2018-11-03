@@ -1,7 +1,8 @@
 const store = require('./store')
 
 const renderWhiskeys = data => {
-  $('.clear-index').css('display', 'none')
+  $('.clear-index').hide()
+  $('#whiskey-index').empty()
   data.whiskeys.forEach(whiskeys => {
     const whiskeyHTML = (`
     <div class="clear-index">
@@ -138,7 +139,9 @@ const onFindBottleFailure = error => {
 }
 
 const onCreateSuccess = data => {
-  $('.clear-index').css('display', 'none')
+  $('.clear-index').hide()
+  $('#whiskey-index').empty()
+  $('#create-whiskey').hide()
   const whiskey = data.whiskey
   $('#message').text(`Whiskey ${whiskey.id} has been created:`)
   const whiskeyHTML = (`
@@ -161,7 +164,7 @@ const onCreateFailure = error => {
 }
 
 const onDeleteSuccess = () => {
-  $('#message').text('you have deleted a whiskey')
+  $('#message').text('whiskey removed from your favorites')
   $('#message').css('color', '#00aafa')
 }
 
@@ -170,8 +173,20 @@ const onDeleteFailure = error => {
   $('#message').css('color', 'red')
 }
 
+const onSaveSuccess = data => {
+  store.data = data.favorite
+  $('#search-form').css('display', 'block')
+  console.log(store.data)
+  $('#message').text(`You have saved ${data.whiskey_id} to your favorites`)
+}
+
+const onSaveFailure = error => {
+  $('#message').text(`Could not save whiskey. Error is ${error}`)
+}
+
 const onUpdateBottleSuccess = (data) => {
-  $('.clear-index').css('display', 'none')
+  $('.clear-index').hide()
+  $('#whiskey-index').empty()
   const whiskey = data.whiskey
   $('#message').text(`Whiskey ${whiskey.id} has been updated:`)
   const whiskeyHTML = (`
@@ -210,6 +225,8 @@ module.exports = {
   onFindBottleFailure,
   onCreateSuccess,
   onCreateFailure,
+  onSaveSuccess,
+  onSaveFailure,
   onDeleteSuccess,
   onDeleteFailure,
   onUpdateBottleSuccess,

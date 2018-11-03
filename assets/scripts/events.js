@@ -92,33 +92,33 @@ const onFindBottle = event => {
 const onCreateBottle = event => {
   event.preventDefault()
   const data = getFormFields(event.target)
-  const whiskeys = data.whiskeys
-  if (whiskeys.name === '') {
+  const whiskey = data.whiskey
+  if (whiskey.name === '') {
     $('#message').text('Name is required')
     $('#message').css('color', 'red')
     return false
   }
-  if (whiskeys.region === '') {
+  if (whiskey.region === '') {
     $('#message').text('Region is required')
     $('#message').css('color', 'red')
     return false
   }
-  if (whiskeys.age === null) {
+  if (whiskey.age === null) {
     $('#message').text('Age is required')
     $('#message').css('color', 'red')
     return false
   }
-  if (whiskeys.price === null) {
+  if (whiskey.price === null) {
     $('#message').text('Price is required')
     $('#message').css('color', 'red')
     return false
   }
-  if (whiskeys.classification === '') {
+  if (whiskey.classification === '') {
     $('#message').text('Class is required')
     $('#message').css('color', 'red')
     return false
   }
-  if (whiskeys.description === '') {
+  if (whiskey.description === '') {
     $('#message').text('Description is required')
     $('#message').css('color', 'red')
     return false
@@ -129,12 +129,21 @@ const onCreateBottle = event => {
   }
 }
 
+const onSaveBottle = event => {
+  event.preventDefault()
+  const data = getFormFields(event.target)
+  console.log(data)
+  spiritApi.saveBottle(data.favorite)
+    .then(spiritUi.onSaveSuccess)
+    .catch(spiritUi.onSaveFailure)
+}
+
 const onDeleteBottle = event => {
   event.preventDefault()
   const data = getFormFields(event.target)
-    spiritApi.destroyBottle(data.whiskeys.id)
-      .then(spiritUi.onDeleteSuccess)
-      .catch(spiritUi.onDeleteFailure)
+  spiritApi.deleteFavorite(data.favorite.whiskey_id)
+    .then(spiritUi.onDeleteSuccess)
+    .catch(spiritUi.onDeleteFailure)
 }
 
 const onUpdateBottle =  event => {
@@ -192,6 +201,7 @@ module.exports = {
   onGetBottles,
   onFindBottle,
   onCreateBottle,
+  onSaveBottle,
   onDeleteBottle,
   onUpdateBottle
 }

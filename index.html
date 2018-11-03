@@ -145,12 +145,12 @@
                 <form id="create-whiskey" class="ajax-forms">
                   <fieldset id="create-whiskey-fields">
                     <div class="form-group">
-                      <input class="text-input-create" type="text" name="whiskeys[name]" placeholder="add name" style="display: none;">
-                      <input class="text-input-create" type="text" name="whiskeys[region]" placeholder="add region" style="display: none;">
-                      <input class="text-input-create" type="number" name="whiskeys[age]" placeholder="add age in years as number" style="display: none;">
-                      <input class="text-input-create" type="number" name="whiskeys[price]" placeholder="add price. round to nearest dollar" style="display: none;">
-                      <input class="text-input-create" type="text" name="whiskeys[classification]" placeholder="add classification" style="display: none;">
-                      <input class="text-input-create" type="text" name="whiskeys[description]" placeholder="enter a short description" style="display: none;">
+                      <input class="text-input-create" type="text" name="whiskey[name]" placeholder="add name" style="display: none;">
+                      <input class="text-input-create" type="text" name="whiskey[region]" placeholder="add region" style="display: none;">
+                      <input class="text-input-create" type="number" name="whiskey[age]" placeholder="add age in years as number" style="display: none;">
+                      <input class="text-input-create" type="number" name="whiskey[price]" placeholder="add price. round to nearest dollar" style="display: none;">
+                      <input class="text-input-create" type="text" name="whiskey[classification]" placeholder="add classification" style="display: none;">
+                      <input class="text-input-create" type="text" name="whiskey[description]" placeholder="enter a short description" style="display: none;">
                     </div>
                   </fieldset>
                 <button id="create-button" type="submit" class="ajax-actions" style="display: none;">Save</button>
@@ -159,19 +159,19 @@
                       <form id="update-whiskey" class="ajax-forms">
                         <fieldset id="update-whiskey-fields">
                           <div class="form-group">
-                            <input class="text-input-update" type="number" name="whiskeys[id]" placeholder="whiskey id" style="display: none;">
-                            <input class="text-input-update" type="text" name="whiskeys[name]" placeholder="change name" style="display: none;">
-                            <input class="text-input-update" type="text" name="whiskeys[region]" placeholder="change region" style="display: none;">
-                            <input class="text-input-update" type="number" name="whiskeys[age]" placeholder="change age in years as number" style="display: none;">
-                            <input class="text-input-update" type="number" name="whiskeys[price]" placeholder="change price. round to nearest dollar" style="display: none;">
-                            <input class="text-input-update" type="text" name="whiskeys[classification]" placeholder="change classification" style="display: none;">
-                            <input class="text-input-update" type="text" name="whiskeys[description]" placeholder="modify description" style="display: none;">
+                            <input class="text-input-update" type="number" name="whiskey[id]" placeholder="whiskey id" style="display: none;">
+                            <input class="text-input-update" type="text" name="whiskey[name]" placeholder="change name" style="display: none;">
+                            <input class="text-input-update" type="text" name="whiskey[region]" placeholder="change region" style="display: none;">
+                            <input class="text-input-update" type="number" name="whiskey[age]" placeholder="change age in years as number" style="display: none;">
+                            <input class="text-input-update" type="number" name="whiskey[price]" placeholder="change price. round to nearest dollar" style="display: none;">
+                            <input class="text-input-update" type="text" name="whiskey[classification]" placeholder="change classification" style="display: none;">
+                            <input class="text-input-update" type="text" name="whiskey[description]" placeholder="modify description" style="display: none;">
                           </div>
                         </fieldset>
                         <button id="update-button" type="submit" class="ajax-actions" style="display: none;">Save</button>
                       </form>
                       <button id="show-update-forms" type="submit" class="ajax-actions" style="display: none;">Update Whiskey</button>
-                <form id="delete-form" class="ajax-forms">
+                <!-- <form id="delete-form" class="ajax-forms">
                   <div class="form-group">
                     <fieldset id="delete-whiskey">
                       <input id="delete-form-field" class="text-input" type="number" name="whiskeys[id]" placeholder="delete by id" style="display: none;">
@@ -186,7 +186,7 @@
                       <button id="show-whiskey-button" class="ajax-actions" type="submit" style="display: none;">Show Whiskey</button>
                     </fieldset>
                   </div>
-                </form>
+                </form> -->
       </nav>
             <h1 id="branding" class="title" align="center">SpiritBinder</h1>
             <h4 id="message" class="title"></h4>
